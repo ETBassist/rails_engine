@@ -1,4 +1,5 @@
 class Transaction < ApplicationRecord
+  belongs_to :invoice
 end
 
 #  create_table "transactions", force: :cascade do |t|
