@@ -10,9 +10,6 @@ require 'csv'
 # before running "rake db:seed", do the following:
 # - put the "rails-engine-development.pgdump" file in db/data/
 # - put the "items.csv" file in db/data/
-ActiveRecord::Base.connection.tables.each do |table|
-  ActiveRecord::Base.connection.reset_pk_sequence!(table)
-end
 
 Item.destroy_all
 
@@ -32,6 +29,9 @@ CSV.foreach('./db/data/items.csv', headers: true) do |row|
                updated_at: row["updated_at"])
 end
 
+ActiveRecord::Base.connection.tables.each do |table|
+  ActiveRecord::Base.connection.reset_pk_sequence!(table)
+end
 # TODO
 # - Import the CSV data into the Items table
 # - Add code to reset the primary key sequences on all 6 tables (merchants, items, customers, invoices, invoice_items, transactions)
