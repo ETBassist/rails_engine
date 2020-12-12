@@ -9,13 +9,21 @@ describe 'Merchant Index Endpoint' do
     it 'and I should see a JSON response of merchants' do
       get '/api/v1/merchants'
 
-      expect(JSON.parse(response.body).size).to eq(5)
+      merchants = JSON.parse(response.body, symbolize_names: true)
+      expect(merchants[:data].size).to eq(5)
+      merchants[:data].each do |merchant|
+        expect(merchant).to have_key(:id)
+        expect(merchant[:id]).to be_a(Integer)
+        expect(merchant[:type]).to eq('merchant')
+        expect(merchant[:attributes]).to have_key(:name)
+        expect(merchant[:attributes][:name]).to be_a(String)
+      end
     end
 
     it 'returns a status code of 200 OK success' do
       get '/api/v1/merchants'
 
-      expect(@response).to have_http_status(:success)
+      expect(response).to have_http_status(:success)
     end
   end
 end
