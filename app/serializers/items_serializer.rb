@@ -25,8 +25,8 @@ class ItemsSerializer
         attributes: {
           name: item.name,
           description: item.description,
-          unit_price: item.unit_price,
-          merchant_id: item.merchant_id
+          unit_price: item.unit_price.to_s,
+          merchant_id: item.merchant_id.to_s
         }
       }
     }

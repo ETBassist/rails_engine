@@ -16,7 +16,7 @@ describe 'POST to items' do
       post '/api/v1/items', params: @item_params
 
       item_response = JSON.parse(response.body, symbolize_names: true)
-      expect(item_response[:data]).to have_key(:data)
+      expect(item_response).to have_key(:data)
       expect(item_response[:data][:id]).to be_a(String)
       expect(item_response[:data][:type]).to eq('item')
       expect(item_response[:data][:attributes]).to have_key(:name)
@@ -24,7 +24,7 @@ describe 'POST to items' do
       expect(item_response[:data][:attributes]).to have_key(:description)
       expect(item_response[:data][:attributes][:description]).to eq("#{@item_params[:description]}")
       expect(item_response[:data][:attributes]).to have_key(:unit_price)
-      expect(item_response[:data][:attributes][:unit_price]).to eq("{@item_params[:unit_price]}")
+      expect(item_response[:data][:attributes][:unit_price]).to eq("#{@item_params[:unit_price]}")
       expect(item_response[:data][:attributes]).to have_key(:merchant_id)
       expect(item_response[:data][:attributes][:merchant_id]).to eq("#{@merchant.id}")
     end
