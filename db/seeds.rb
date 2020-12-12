@@ -19,14 +19,16 @@ puts cmd
 system(cmd)
 
 
-CSV.foreach('./db/data/items.csv', headers: true) do |row|
-  Item.create!(id: row["id"].to_i,
-               unit_price: (row["unit_price"].to_i * 0.01).round(2),
-               merchant_id: row["merchant_id"].to_i,
-               description: row["description"],
-               name: row["name"],
-               created_at: row["created_at"],
-               updated_at: row["updated_at"])
+CSV.foreach("#{Rails.root}/db/data/items.csv", headers: true) do |row|
+  Item.create!(
+    id: row["id"].to_i,
+    unit_price: (row["unit_price"].to_i * 0.01).round(2),
+    merchant_id: row["merchant_id"].to_i,
+    description: row["description"],
+    name: row["name"],
+    created_at: row["created_at"],
+    updated_at: row["updated_at"]
+  )
 end
 
 ActiveRecord::Base.connection.tables.each do |table|
