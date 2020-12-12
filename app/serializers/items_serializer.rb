@@ -5,13 +5,7 @@ class ItemsSerializer
         {
           id: item.id,
           type: 'item',
-          attributes: {
-            name: item.name,
-            description: item.description,
-            unit_price: item.unit_price,
-            merchant_id: item.merchant_id
-
-          }
+          attributes: attributes_for(item)
         }
       end
     }
@@ -22,13 +16,23 @@ class ItemsSerializer
       data: {
         id: item.id.to_s,
         type: 'item',
-        attributes: {
-          name: item.name,
-          description: item.description,
-          unit_price: item.unit_price,
-          merchant_id: item.merchant_id
-        }
+        attributes: attributes_for(item)
       }
     }
   end
+
+  module FormatAttributes
+    private
+
+    def attributes_for(item)
+      {
+        name: item.name,
+        description: item.description,
+        unit_price: item.unit_price,
+        merchant_id: item.merchant_id
+      }
+    end
+  end
+
+  extend FormatAttributes
 end
