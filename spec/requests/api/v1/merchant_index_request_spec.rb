@@ -13,7 +13,7 @@ describe 'Merchant Index Endpoint' do
       expect(merchants[:data].size).to eq(5)
       merchants[:data].each do |merchant|
         expect(merchant).to have_key(:id)
-        expect(merchant[:id]).to be_a(Integer)
+        expect(merchant[:id]).to be_a(String)
         expect(merchant[:type]).to eq('merchant')
         expect(merchant[:attributes]).to have_key(:name)
         expect(merchant[:attributes][:name]).to be_a(String)
