@@ -25,6 +25,6 @@ describe 'Item PATCH endpoint' do
     expect(item_response[:data][:attributes][:unit_price]).to eq(item_params[:unit_price])
 
     expect(@item.reload.name).to eq(item_params[:name])
-    expect(@item.reload.unit_price).to eq(item_paras[:unit_price])
+    expect(@item.reload.unit_price).to eq(item_params[:unit_price])
   end
 end
