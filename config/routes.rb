@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :merchants
       resources :items 
       get '/items/:id/merchants', to: 'items/merchants#show'
+      get '/merchants/:id/items', to: 'merchants/items#index'
     end
   end
 end

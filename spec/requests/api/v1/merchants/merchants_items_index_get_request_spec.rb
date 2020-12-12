@@ -15,7 +15,7 @@ describe 'Merchant/Items index GET request' do
     expect(items_response[:data]).to be_a(Array)
     expect(items_response[:data].size).to eq(10)
     items_response[:data].each do |item|
-      expect(item).to have_key([:id])
+      expect(item).to have_key(:id)
       expect(item[:type]).to eq('item')
       expect(item[:attributes]).to have_key(:name)
       expect(item[:attributes]).to have_key(:description)
