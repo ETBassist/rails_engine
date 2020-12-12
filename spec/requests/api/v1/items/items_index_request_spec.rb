@@ -13,7 +13,7 @@ describe 'Items Index Endpoint' do
       expect(items[:data].size).to eq(20)
       items[:data].each do |item|
         expect(item).to have_key(:id)
-        expect(item[:id]).to be_a(Integer)
+        expect(item[:id]).to be_a(String)
         expect(item[:type]).to eq('item')
         expect(item[:attributes]).to have_key(:name)
         expect(item[:attributes][:name]).to be_a(String)

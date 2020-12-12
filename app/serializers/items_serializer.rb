@@ -2,27 +2,25 @@ class ItemsSerializer
   def self.format_items(items)
     {
       data: items.map do |item|
-        {
-          id: item.id,
-          type: 'item',
-          attributes: attributes_for(item)
-        }
+        format_data_for(item)
       end
     }
   end
 
   def self.format_item(item)
-    {
-      data: {
-        id: item.id.to_s,
-        type: 'item',
-        attributes: attributes_for(item)
-      }
-    }
+    { data: format_data_for(item) }
   end
 
   module FormatAttributes
     private
+
+    def format_data_for(item)
+      {
+        id: item.id.to_s,
+        type: 'item',
+        attributes: attributes_for(item)
+      }
+    end
 
     def attributes_for(item)
       {
