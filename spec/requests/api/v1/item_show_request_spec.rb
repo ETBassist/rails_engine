@@ -13,7 +13,7 @@ describe 'Item Show Endpoint' do
 
       item = JSON.parse(response.body, symbolize_names: true)
       expect(item[:data][:type]).to eq('item')
-      expect(item[:data][:id]).to eq(@item.id)
+      expect(item[:data][:id]).to eq(@item.id.to_s)
       expect(item[:data][:attributes][:name]).to eq(@item.name) # probably some way to do [:attributes].each
       expect(item[:data][:attributes][:description]).to eq(@item.description)
       expect(item[:data][:attributes][:unit_price]).to eq(@item.unit_price)

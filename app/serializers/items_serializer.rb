@@ -20,7 +20,7 @@ class ItemsSerializer
   def self.format_item(item)
     {
       data: {
-        id: item.id,
+        id: item.id.to_s,
         type: 'item',
         attributes: {
           name: item.name,
