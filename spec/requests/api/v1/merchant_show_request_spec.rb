@@ -7,7 +7,7 @@ describe 'Merchant Show Endpoint' do
     end
 
     it 'I get a JSON response with the details for that merchant' do
-      get "/api/v1/merchant/#{@merchant.id}"
+      get "/api/v1/merchants/#{@merchant.id}"
 
       merchant = JSON.parse(response.body, symbolize_names: true)
       expect(merchant[:data][:id]).to eq(@merchant.id.to_s)
