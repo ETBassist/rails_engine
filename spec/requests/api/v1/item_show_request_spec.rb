@@ -7,12 +7,11 @@ describe 'Item Show Endpoint' do
     end
 
     it 'and I should get a JSON response of just that item' do;
-      get "/api/v1/item/#{@item.id}"
+      get "/api/v1/items/#{@item.id}"
 
       expect(response).to be_successful
 
       item = JSON.parse(response.body, symbolize_names: true)
-      expect(item[:data].size).to eq(1)
       expect(item[:data][:type]).to eq('item')
       expect(item[:data][:id]).to eq(@item.id)
       expect(item[:data][:attributes][:name]).to eq(@item.name) # probably some way to do [:attributes].each
