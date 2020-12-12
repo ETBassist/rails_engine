@@ -17,7 +17,7 @@ describe 'Item Show Endpoint' do
       expect(item[:data][:attributes][:name]).to eq(@item.name) # probably some way to do [:attributes].each
       expect(item[:data][:attributes][:description]).to eq(@item.description)
       expect(item[:data][:attributes][:unit_price]).to eq(@item.unit_price)
-      expect(item[:data][:attributes][:merchant_id]).to eq("#{@item.merchant_id}")
+      expect(item[:data][:attributes][:merchant_id]).to eq(@item.merchant_id)
     end
   end
 end

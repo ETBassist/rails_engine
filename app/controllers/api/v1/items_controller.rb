@@ -14,6 +14,12 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemsSerializer.format_item(item)
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    head :no_content
+  end
+
   private
 
   def item_params

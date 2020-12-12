@@ -24,9 +24,9 @@ describe 'POST to items' do
       expect(item_response[:data][:attributes]).to have_key(:description)
       expect(item_response[:data][:attributes][:description]).to eq("#{@item_params[:description]}")
       expect(item_response[:data][:attributes]).to have_key(:unit_price)
-      expect(item_response[:data][:attributes][:unit_price]).to eq("#{@item_params[:unit_price]}")
+      expect(item_response[:data][:attributes][:unit_price]).to eq(@item_params[:unit_price])
       expect(item_response[:data][:attributes]).to have_key(:merchant_id)
-      expect(item_response[:data][:attributes][:merchant_id]).to eq("#{@merchant.id}")
+      expect(item_response[:data][:attributes][:merchant_id]).to eq(@merchant.id)
     end
   end
 end
