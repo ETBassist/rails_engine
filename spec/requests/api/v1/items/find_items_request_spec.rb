@@ -56,4 +56,16 @@ describe 'Item GET request finds' do
       expect(item[:attributes]).to have_key(:merchant_id)
     end
   end
+
+  it 'a 204 is returned if nothing is found' do
+    get '/api/v1/items/find_all?description=awholelotofnonsensethatmeansnothing'
+
+    expect(response.status).to eq(204)
+  end
+
+  it 'one can also search by unit_price or timestamps' do
+    get "/api/v1/items/find_all?merchant_id=#{@item1.merchant.id}"
+
+    expect(response.status).to eq(200)
+  end
 end

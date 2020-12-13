@@ -5,7 +5,7 @@ class Api::V1::ItemsSearchController < ApplicationController
       if key == 'unit_price' || key == 'merchant_id'
         item = Item.find_by("#{key} = ?", value)
       elsif key.present?
-        item = Item.find_by("lower(#{key}) like ?", "%#{value.to_s.downcase}%")
+        item = Item.find_by("lower(#{key}) like ?", "%#{value.downcase}%")
       end
     end
 
@@ -22,14 +22,14 @@ class Api::V1::ItemsSearchController < ApplicationController
       if key == 'unit_price' || key == 'merchant_id'
         items = Item.where("#{key} = ?", value)
       elsif key.present?
-        items = Item.where("lower(#{key}) like ?", "%#{value.to_s.downcase}%")
+        items = Item.where("lower(#{key}) like ?", "%#{value.downcase}%")
       end
     end
 
-    if items
-      render json: ItemsSerializer.format_items(items)
-    else
+    if items.empty?
       head :no_content
+    else
+      render json: ItemsSerializer.format_items(items)
     end
   end
 
