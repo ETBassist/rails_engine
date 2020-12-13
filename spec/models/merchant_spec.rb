@@ -45,7 +45,12 @@ describe Merchant, type: :model do
     it '::revenue_between(date1, date2)' do
       date1 = 6.days.ago.strftime('%Y-%m-%d')
       date2 = 4.days.ago.strftime('%Y-%m-%d')
-      expect(Merchant.revenue_between(date1, date2)[0]).to eq(13200.0)
+      expect(Merchant.revenue_between(date1, date2)).to eq(13200.0)
+    end
+    
+    it '::by_items_sold' do
+      expect(Merchant.by_items_sold).to eq([@merchant2, @merchant1])
+      expect(Merchant.by_items_sold(1)).to eq([@merchant2])
     end
   end
 

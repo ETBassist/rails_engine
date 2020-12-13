@@ -11,17 +11,6 @@ class MerchantSerializer
     { data: format_data_for(merchant) }
   end
 
-  def self.format_revenue_for(merchant)
-    {
-      data: {
-        id: nil,
-        attributes: {
-          revenue: merchant.revenue
-        }
-      }
-    }
-  end
-
   module MerchantFormattable
     private
 
