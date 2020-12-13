@@ -21,13 +21,13 @@ FactoryBot.define do
     invoice
     credit_card_number { Faker::Finance.credit_card }
     credit_card_expiration_date { Faker::Date.forward(days: 100) }
-    result
+    result { ['refunded', 'success', 'failed'].sample }
   end
 
   factory :invoice do
     customer
     merchant
-    status
+    status { ['shipped', 'pending'].sample }
   end
 
   factory :customer do

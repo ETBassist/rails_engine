@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       get '/merchants/:id/items', to: 'merchants/items#index'
       get '/merchants/find', to: 'merchants_search#find_single_merchant'
       get '/merchants/find_all', to: 'merchants_search#find_plural_merchants'
+      get '/merchants/most_revenue', to: 'merchants_search#find_by_revenue'
+      get '/merchants/most_items', to: 'merchants_search#find_by_items'
+      get '/merchants/:id/revenue', to: 'merchants#revenue'
+      get '/revenue', to: 'revenue#revenue_in_range'
       resources :merchants
       resources :items 
     end
