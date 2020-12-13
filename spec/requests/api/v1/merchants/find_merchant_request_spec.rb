@@ -20,9 +20,9 @@ describe 'Merchant GET request finds' do
   it 'I can search for multiple merchants with /api/v1/merchants/find_all?name=value' do
     get '/api/v1/merchants/find_all?name=RING'
 
-    merchants_response = JSON.parase(response.body, symbolize_names: true)
+    merchants_response = JSON.parse(response.body, symbolize_names: true)
 
-    expect(merchant_response[:data].size).to eq(2)
+    expect(merchants_response[:data].size).to eq(2)
 
     merchants_response[:data].each do |merchant|
       expect(merchant[:id]).to be_a(String)
