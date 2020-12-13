@@ -16,6 +16,23 @@ class Api::V1::ItemsSearchController < ApplicationController
     end
   end
 
+  def find_plural_items
+    items = nil
+    item_params.each do |key, value|
+      if key == 'unit_price' || key == 'merchant_id'
+        items = Item.where("#{key} = ?", value)
+      elsif key.present?
+        items = Item.where("lower(#{key}) like ?", "%#{value.to_s.downcase}%")
+      end
+    end
+
+    if items
+      render json: ItemsSerializer.format_items(items)
+    else
+      head :no_content
+    end
+  end
+
   private 
 
   def item_params
