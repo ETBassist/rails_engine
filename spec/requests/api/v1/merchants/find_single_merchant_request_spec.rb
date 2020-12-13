@@ -13,6 +13,6 @@ describe 'Merchant GET request finds' do
 
     expect(merchant_response[:data][:id]).to eq("#{@merchant1.id}")
     expect(merchant_response[:data][:type]).to eq('merchant')
-    expect(merchant_response[:data][:attributes][:name]).to eq(@merchant.name)
+    expect(merchant_response[:data][:attributes][:name]).to eq(@merchant1.name)
   end
 end
