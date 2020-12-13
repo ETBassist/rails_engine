@@ -61,6 +61,7 @@ describe Merchant, type: :model do
     end
 
     it '#revenue' do
+      #expect(@merchant2.revenue.sum(&:revenue)).to eq(17600.0)
       expect(@merchant2.revenue).to eq(17600.0)
     end
   end
