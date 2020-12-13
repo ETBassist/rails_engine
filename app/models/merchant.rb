@@ -19,10 +19,12 @@ class Merchant < ApplicationRecord
   end
 end
 
-  # Merchant.joins(invoices: [:invoice_items, :transactions])
-  # .select('merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue')
-  # .group('merchants.id')
-  # .where("invoices.status = 'shipped' AND transactions.result = 'success'")
+#SELECT SUM(revenue) FROM (SELECT SUM(ii.quantity * ii.unit_price) AS revenue FROM merchants m
+#INNER JOIN invoices i ON i.merchant_id = m.id
+#INNER JOIN invoice_items ii ON i.id = ii.invoice_id
+#INNER JOIN transactions t ON t.id = t.invoice_id
+#WHERE i.status = 'shipped' AND t.result = 'success' AND i.created_at > '2012-03-12' AND i.created_at < '2012-03-14'
+#GROUP BY m.id) AS total_revenue;
 
 #  create_table "merchants", force: :cascade do |t|
 #    t.string "name"
