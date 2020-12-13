@@ -12,6 +12,14 @@ class Merchant < ApplicationRecord
       .limit(num_merchants)
   end
 
+  # TODO figure out some way to return just the number instead of an array
+  def self.revenue_between(date1, date2)
+    self.joins(invoices: [:invoice_items, :transactions])
+      .group('merchants.id')
+      .where("invoices.status = 'shipped' AND transactions.result = 'success' AND invoices.created_at > '#{date1}' AND invoices.created_at < '#{date2}'")
+      .pluck(Arel.sql('SUM(invoice_items.quantity * invoice_items.unit_price)'))
+  end
+
   def revenue
     invoices.joins(:invoice_items, :transactions)
       .where("invoices.status = 'shipped' AND transactions.result = 'success'")
