@@ -3,13 +3,13 @@ class Merchant < ApplicationRecord
   has_many :invoices
   has_many :customers, through: :invoices
 
-  def self.by_revenue(limit_num = 10)
+  def self.by_revenue(num_merchants = 10)
     self.joins(invoices: [:invoice_items, :transactions])
       .select('merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue')
       .group('merchants.id')
       .where("invoices.status = 'shipped' AND transactions.result = 'success'")
       .order('revenue DESC')
-      .limit(limit_num)
+      .limit(num_merchants)
   end
 end
 

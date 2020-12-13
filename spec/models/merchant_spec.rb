@@ -8,9 +8,9 @@ describe Merchant, type: :model do
   end
 
   describe 'class methods' do
-    it '::by_revenue' do
-      merchant1 = create(:merchant)
-      merchant2 = create(:merchant)
+    before :each do
+      @merchant1 = create(:merchant)
+      @merchant2 = create(:merchant)
       invoice1 = create(:invoice, merchant: merchant1, status: 'shipped')
       invoice2 = create(:invoice, merchant: merchant1, status: 'shipped')
       invoice3 = create(:invoice, merchant: merchant1, status: 'pending')
@@ -35,8 +35,11 @@ describe Merchant, type: :model do
       create(:transaction, invoice: invoice6, result: 'success')
       create(:transaction, invoice: invoice7, result: 'success')
       create(:transaction, invoice: invoice8, result: 'success')
-      expect(Merchant.by_revenue).to eq([merchant2, merchant1])
-      expect(Merchant.by_revenue(1)).to eq([merchant2])
+    end
+
+    it '::by_revenue' do
+      expect(Merchant.by_revenue).to eq([@merchant2, @merchant1])
+      expect(Merchant.by_revenue(1)).to eq([@merchant2])
     end
   end
 end
