@@ -36,6 +36,7 @@ describe Merchant, type: :model do
       create(:transaction, invoice: invoice7, result: 'success')
       create(:transaction, invoice: invoice8, result: 'success')
       expect(Merchant.by_revenue).to eq([merchant2, merchant1])
+      expect(Merchant.by_revenue(1)).to eq([merchant2])
     end
   end
 end
