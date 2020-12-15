@@ -1,5 +1,5 @@
 class Api::V1::ItemsSearchController < ApplicationController
-  def find_single_item
+  def show
     item = nil
     item_params.each do |key, value|
       if key == 'unit_price' || key == 'merchant_id'
@@ -16,7 +16,7 @@ class Api::V1::ItemsSearchController < ApplicationController
     end
   end
 
-  def find_plural_items
+  def index
     items = nil
     item_params.each do |key, value|
       if key == 'unit_price' || key == 'merchant_id'
