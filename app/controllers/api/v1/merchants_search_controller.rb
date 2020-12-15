@@ -1,12 +1,22 @@
 class Api::V1::MerchantsSearchController < ApplicationController
   def show
-    merchant = Merchant.where('lower(name) like ?', "%#{params[:name].downcase}%").first
-    render json: MerchantSerializer.new(merchant)
+    merchants = Merchant.search_by(merchant_params)
+
+    if merchants.empty?
+      head :not_found
+    else
+      render json: MerchantSerializer.new(merchants.first)
+    end
   end
 
   def index
-    merchants = Merchant.where('lower(name) like ?', "%#{params[:name].downcase}%")
-    render json: MerchantSerializer.new(merchants)
+    merchants = Merchant.search_by(merchant_params)
+
+    if merchants.empty?
+      head :not_found
+    else 
+      render json: MerchantSerializer.new(merchants)
+    end
   end
 
   def find_by_revenue
@@ -15,5 +25,11 @@ class Api::V1::MerchantsSearchController < ApplicationController
 
   def find_by_items
     render json: MerchantSerializer.new(Merchant.by_items_sold(params[:quantity]))
+  end
+  
+  private
+
+  def merchant_params
+    params.permit(:name, :created_at, :updated_at)
   end
 end
