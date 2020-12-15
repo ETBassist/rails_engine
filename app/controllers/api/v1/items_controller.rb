@@ -1,17 +1,17 @@
 class Api::V1::ItemsController < ApplicationController
   def index
     items = Item.all
-    render json: ItemsSerializer.format_items(items)
+    render json: ItemSerializer.new(items)
   end
 
   def show
     item = Item.find(params[:id])
-    render json: ItemsSerializer.format_item(item)
+    render json: ItemSerializer.new(item)
   end
 
   def create
     item = Item.create!(item_params)
-    render json: ItemsSerializer.format_item(item)
+    render json: ItemSerializer.new(item)
   end
 
   def destroy
@@ -23,7 +23,7 @@ class Api::V1::ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    render json: ItemsSerializer.format_item(item)
+    render json: ItemSerializer.new(item)
   end
 
   private

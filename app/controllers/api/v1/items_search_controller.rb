@@ -10,7 +10,7 @@ class Api::V1::ItemsSearchController < ApplicationController
     end
 
     if item
-      render json: ItemsSerializer.format_item(item)
+      render json: ItemSerializer.new(item)
     else
       head :no_content
     end
@@ -29,7 +29,7 @@ class Api::V1::ItemsSearchController < ApplicationController
     if items.empty?
       head :no_content
     else
-      render json: ItemsSerializer.format_items(items)
+      render json: ItemSerializer.new(items)
     end
   end
 
