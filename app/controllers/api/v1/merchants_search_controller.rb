@@ -1,22 +1,14 @@
 class Api::V1::MerchantsSearchController < ApplicationController
   def show
-    merchants = Merchant.search_by(merchant_params)
+    merchant = Merchant.search_for_one(merchant_params)
 
-    if merchants.empty?
-      head :not_found
-    else
-      render json: MerchantSerializer.new(merchants.first)
-    end
+    render json: MerchantSerializer.new(merchant)
   end
 
   def index
-    merchants = Merchant.search_by(merchant_params)
+    merchants = Merchant.search_for_many(merchant_params)
 
-    if merchants.empty?
-      head :not_found
-    else 
-      render json: MerchantSerializer.new(merchants)
-    end
+    render json: MerchantSerializer.new(merchants)
   end
 
   def find_by_revenue

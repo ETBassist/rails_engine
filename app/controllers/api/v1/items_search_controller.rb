@@ -1,22 +1,14 @@
 class Api::V1::ItemsSearchController < ApplicationController
   def show
-    item = Item.search_by(item_params)
+    item = Item.search_for_one(item_params)
 
-    if item
-      render json: ItemSerializer.new(item.first)
-    else
-      head :not_found
-    end
+    render json: ItemSerializer.new(item)
   end
 
   def index
-    items = Item.search_by(item_params)
+    items = Item.search_for_many(item_params)
 
-    if items.empty?
-      head :not_found
-    else
-      render json: ItemSerializer.new(items)
-    end
+    render json: ItemSerializer.new(items)
   end
 
   private 

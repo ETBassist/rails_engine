@@ -8,14 +8,20 @@ describe Item, type: :model do
   end
 
   describe 'class methods' do
-    it '::search_by' do
+    before :each do
       @item1 = create(:item, created_at: 5.days.ago)
       @item2 = create(:item, created_at: 5.days.ago)
       @item3 = create(:item, created_at: 10.days.ago)
       @item4 = create(:item, created_at: 3.days.ago)
       @item5 = create(:item, created_at: 6.days.ago)
+    end
 
-      expect(Item.search_by({'created_at' => 5.days.ago})).to eq([@item1, @item2])
+    it '::search_for_many' do
+      expect(Item.search_for_many({'created_at' => 5.days.ago})).to eq([@item1, @item2])
+    end
+
+    it '::search_for_one' do
+      expect(Item.search_for_one({'created_at' => 5.days.ago})).to eq(@item1)
     end
   end
 end

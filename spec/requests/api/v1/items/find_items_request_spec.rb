@@ -23,10 +23,10 @@ describe 'Item GET request finds' do
     expect(item_response[:data][:attributes][:merchant_id]).to eq(@item1.merchant_id)
   end
 
-  it 'I get a 404 no content if it cannot find anything' do
+  it 'I get a 200 no content if it cannot find anything' do
     get '/api/v1/items/find?fuzzy=111.11'
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(200)
   end
 
   it 'I can search for an item by unit price' do
@@ -57,10 +57,10 @@ describe 'Item GET request finds' do
     end
   end
 
-  it 'a 404 is returned if nothing is found' do
+  it 'a 200 is returned if nothing is found' do
     get '/api/v1/items/find_all?description=awholelotofnonsensethatmeansnothing'
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(200)
   end
 
   it 'one can also search by unit_price or timestamps' do
