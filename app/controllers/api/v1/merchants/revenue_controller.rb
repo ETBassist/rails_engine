@@ -1,6 +1,6 @@
 class Api::V1::Merchants::RevenueController < ApplicationController
   def index
     merchant = Merchant.find(params[:merchant_id])
-    render json: RevenueSerializer.format_revenue(merchant.revenue)
+    render json: RevenueSerializer.new(Revenue.new(merchant.revenue))
   end
 end
