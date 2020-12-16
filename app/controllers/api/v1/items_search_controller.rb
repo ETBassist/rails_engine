@@ -1,35 +1,21 @@
 class Api::V1::ItemsSearchController < ApplicationController
-  def find_single_item
-    item = nil
-    item_params.each do |key, value|
-      if key == 'unit_price' || key == 'merchant_id'
-        item = Item.find_by("#{key} = ?", value)
-      elsif key.present?
-        item = Item.find_by("lower(#{key}) like ?", "%#{value.downcase}%")
-      end
-    end
+  def show
+    item = Item.search_by(item_params)
 
     if item
-      render json: ItemsSerializer.format_item(item)
+      render json: ItemSerializer.new(item.first)
     else
-      head :no_content
+      head :not_found
     end
   end
 
-  def find_plural_items
-    items = nil
-    item_params.each do |key, value|
-      if key == 'unit_price' || key == 'merchant_id'
-        items = Item.where("#{key} = ?", value)
-      elsif key.present?
-        items = Item.where("lower(#{key}) like ?", "%#{value.downcase}%")
-      end
-    end
+  def index
+    items = Item.search_by(item_params)
 
     if items.empty?
-      head :no_content
+      head :not_found
     else
-      render json: ItemsSerializer.format_items(items)
+      render json: ItemSerializer.new(items)
     end
   end
 
