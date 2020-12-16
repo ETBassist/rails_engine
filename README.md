@@ -3,8 +3,10 @@ Rails Engine is a Ruby on Rails API built to serve as the backend for [Rails Dri
 
 ## Endpoints
 
+### ReST Endpoints
+
 #### Index of Resource
-`GET /api/v1/merchants` OR `GET /api/v1/items`\
+`GET /api/v1/merchants` OR `GET /api/v1/items`
 
 Returns a JSON response of all records of the requested resource\
 Example Response:
@@ -15,11 +17,11 @@ Example Response:
       "id": "1",
       "type": "merchant",
       "attributes": {
-        "name": "Jack's Beanstalk Bizarre"
+        "name": "Jack's Beanstalk Bazaar"
       }
     },
     {
-      "id": "3"
+      "id": "3",
       "type": "merchant",
       "attributes": {
         "name": "Season's Eatings"
@@ -30,7 +32,7 @@ Example Response:
 ```
 
 #### Show Single Record
-`GET /api/v1/item/:id` OR `GET /api/v1/merchants/:id`\
+`GET /api/v1/items/:id` OR `GET /api/v1/merchants/:id`
 
 Returns a JSON response of a single record matching the given id\
 Example Response:
@@ -44,6 +46,54 @@ Example Response:
       "description": "Bright, watery, green-tea, bergamont, green grape",
       "unit_price": 39.84,
       "merchant_id": 10316
+    }
+  }
+}
+```
+
+#### Create a Record
+`POST /api/v1/items` OR `POST /api/v1/merchants`
+
+Creates a new record of the specified resource\
+The body should be formatted as:
+```json
+{
+  "attribute1": "value1",
+  "attribute2": "value2"
+}
+```
+Example Response:
+```json
+{
+  "data": {
+    "id": "1",
+    "type": "merchant",
+    "attributes": {
+      "name": "Unicornucopia"
+    }
+  }
+}
+```
+
+#### Update a Record
+`PATCH /api/v1/items/:id` OR `PATCH /api/v1/merchants/:id`
+
+Updates a pre-existing record\
+The body should be formatted as:
+```json
+{
+  "attribute1": "value1",
+  "attribute2": "value2"
+}
+```
+Example Response:
+```json
+{
+  "data": {
+    "id": "1",
+    "type": "merchant",
+    "attributes": {
+      "name": "Season's Eatings"
     }
   }
 }
