@@ -30,4 +30,15 @@ describe 'Merchant GET request finds' do
       expect(merchant[:attributes]).to have_key(:name)
     end
   end
+
+  it 'a not_found status if it cannot find any resources matching' do
+    get '/api/v1/merchants/find?name=THERINGCYCLE'
+
+    expect(response.status).to eq(404)
+
+
+    get '/api/v1/merchants/find_all?name=THERINGCYCLE'
+
+    expect(response.status).to eq(404)
+  end
 end
