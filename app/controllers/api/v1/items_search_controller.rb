@@ -5,7 +5,7 @@ class Api::V1::ItemsSearchController < ApplicationController
     if item
       render json: ItemSerializer.new(item.first)
     else
-      head :no_content
+      head :not_found
     end
   end
 
@@ -13,7 +13,7 @@ class Api::V1::ItemsSearchController < ApplicationController
     items = Item.search_by(item_params)
 
     if items.empty?
-      head :no_content
+      head :not_found
     else
       render json: ItemSerializer.new(items)
     end
