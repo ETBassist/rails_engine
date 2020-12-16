@@ -26,11 +26,6 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantSerializer.new(merchant)
   end
 
-  def revenue
-    merchant = Merchant.find(params[:id])
-    render json: RevenueSerializer.format_revenue(merchant.revenue)
-  end
-
   private
 
   def merchant_params
