@@ -20,6 +20,7 @@ To run Rails Engine locally, you can fork this repo and clone it, or clone this 
 
 ### Setup and Installation
 From the Command Line, after cloning this repo:
+1. `cd rails_engine` to go into the rails_engine directory
 1. Run `bundle install` to install dependencies
 1. Run `bundle exec rake data:import` to create database and import data (Note: You will see a warning when running this command that data may be deleted. This is fine unless you've already added data to the database)
 1. You should now be able to run `bundle exec rspec` to see 49 passing tests
