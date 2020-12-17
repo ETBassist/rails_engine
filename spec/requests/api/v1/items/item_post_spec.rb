@@ -29,7 +29,7 @@ describe 'POST to items' do
       expect(item_response[:data][:attributes][:merchant_id]).to eq(@merchant.id)
     end
 
-    it 'I get a status of 422 if the POST does not contain required information' do
+    it 'I get a status of 400 if the POST does not contain required information' do
       bad_item_params = {
         name: Faker::Coffee.blend_name,
         description: Faker::Coffee.notes

@@ -27,4 +27,13 @@ describe 'Item PATCH endpoint' do
     expect(@item.reload.name).to eq(item_params[:name])
     expect(@item.reload.unit_price).to eq(item_params[:unit_price])
   end
+
+  it 'I get a 400 bad request status if I send an empty required field' do
+    bad_item_params = { name: '',
+                        unit_price: 24.99 }
+
+    patch "/api/v1/items/#{@item.id}", params: bad_item_params
+
+    expect(response.status).to eq(400)
+  end
 end
