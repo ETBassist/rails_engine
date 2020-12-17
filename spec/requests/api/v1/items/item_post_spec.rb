@@ -37,7 +37,7 @@ describe 'POST to items' do
 
       post '/api/v1/items', params: bad_item_params
 
-      expect(response.status).to eq(422)
+      expect(response.status).to eq(400)
     end
   end
 end
