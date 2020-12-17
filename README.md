@@ -2,7 +2,6 @@
 ## Table of Contents
 
 * [About](#about)
-  * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Setup and Installation](#setup-and-installation)
