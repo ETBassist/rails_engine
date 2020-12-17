@@ -34,11 +34,15 @@ describe 'Merchant GET request finds' do
   it 'a not_found status if it cannot find any resources matching' do
     get '/api/v1/merchants/find?name=THERINGCYCLE'
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(200)
+    merchant_response = JSON.parse(response.body, symbolize_names: true)
+    
+    expect(merchant_response).to have_key(:data)
+    expect(merchant_response[:data]).to eq(nil)
 
 
     get '/api/v1/merchants/find_all?name=THERINGCYCLE'
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(200)
   end
 end
