@@ -14,7 +14,7 @@ class Api::V1::ItemsController < ApplicationController
     if item.save
       render json: ItemSerializer.new(item)
     else
-      head :bad_request
+      render status: :bad_request, body: item.errors.full_messages.to_sentence
     end
   end
 
@@ -29,7 +29,7 @@ class Api::V1::ItemsController < ApplicationController
     if item.update(item_params)
       render json: ItemSerializer.new(item)
     else
-      head :bad_request
+      render status: :bad_request, body: item.errors.full_messages.to_sentence
     end
   end
 

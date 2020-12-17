@@ -38,6 +38,8 @@ describe 'POST to items' do
       post '/api/v1/items', params: bad_item_params
 
       expect(response.status).to eq(400)
+
+      expect(response.body).to eq("Merchant must exist and Unit price can't be blank")
     end
   end
 end

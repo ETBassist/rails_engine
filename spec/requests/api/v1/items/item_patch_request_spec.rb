@@ -35,5 +35,7 @@ describe 'Item PATCH endpoint' do
     patch "/api/v1/items/#{@item.id}", params: bad_item_params
 
     expect(response.status).to eq(400)
+
+    expect(response.body).to eq("Name can't be blank")
   end
 end
