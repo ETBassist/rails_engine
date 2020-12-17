@@ -1,5 +1,33 @@
 # Rails Engine
+## Table of Contents
+
+* [About](#about)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Setup and Installation](#setup-and-installation)
+* [API Endpoints](#endpoints)
+* [Schema](#schema)
+
+## About
 Rails Engine is a Ruby on Rails API built to serve as the backend for [Rails Driver](https://github.com/ETBassist/rails_driver)  
+
+## Getting Started
+To run Rails Engine locally, you can fork this repo and clone it, or clone this repo with `git clone https://github.com/ETBassist/rails_engine.git`
+
+### Prerequisites
+* Ruby 2.5.3
+* Ruby on Rails 5.2.4.4
+
+### Setup and Installation
+From the Command Line, after cloning this repo:
+1. Run `bundle install` to install dependencies
+1. Run `bundle exec rake data:import` to create database and import data (Note: You will see a warning when running this command that data may be deleted. This is fine unless you've already added data to the database)
+1. You should now be able to run `bundle exec rspec` to see 49 passing tests
+1. Run `rails s` to start up the Rails Server
+
+You should now be able to visit any of the endpoints below by prefacing them with localhost:3000 to see the raw JSON response, or by using a client like Postman.\
+You may also clone [Rails Driver](https://github.com/ETBassist/rails_driver) into the same parent directory and see the front end in action.
 
 ## Endpoints
 
