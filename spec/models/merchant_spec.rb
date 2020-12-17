@@ -52,6 +52,10 @@ describe Merchant, type: :model do
       expect(Merchant.by_items_sold).to eq([@merchant2, @merchant1])
       expect(Merchant.by_items_sold(1)).to eq([@merchant2])
     end
+
+    it '::search_for_one' do
+      expect(Merchant.search_for_one({'name' => @merchant1.name.upcase})).to eq(@merchant1)
+    end
   end
 
   describe 'instance methods' do
