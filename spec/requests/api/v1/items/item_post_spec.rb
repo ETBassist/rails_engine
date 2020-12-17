@@ -28,5 +28,16 @@ describe 'POST to items' do
       expect(item_response[:data][:attributes]).to have_key(:merchant_id)
       expect(item_response[:data][:attributes][:merchant_id]).to eq(@merchant.id)
     end
+
+    it 'I get a status of 422 if the POST does not contain required information' do
+      bad_item_params = {
+        name: Faker::Coffee.blend_name,
+        description: Faker::Coffee.notes
+      }
+
+      post '/api/v1/items', params: bad_item_params
+
+      expect(response.status).to eq(422)
+    end
   end
 end
