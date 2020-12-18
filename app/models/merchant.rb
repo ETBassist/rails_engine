@@ -3,6 +3,8 @@ class Merchant < ApplicationRecord
   has_many :invoices
   has_many :customers, through: :invoices
 
+  validates :name, presence: true
+
   def self.by_revenue(num_merchants = 10)
     self.joins(invoices: :invoice_items)
       .merge(Invoice.successful)

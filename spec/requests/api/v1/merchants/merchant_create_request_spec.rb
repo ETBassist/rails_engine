@@ -18,4 +18,14 @@ describe 'Merchant POST Request' do
     expect(merchant_response[:data][:attributes]).to have_key(:name)
     expect(merchant_response[:data][:attributes][:name]).to eq(@merchant_params[:name])
   end
+
+  it 'I get a 400 bad request status if the POST is missing required fields' do
+    bad_merchant_params = { name: '' }
+
+    post '/api/v1/merchants', params: bad_merchant_params
+
+    expect(response.status).to eq(400)
+
+    expect(response.body).to eq("Name can't be blank")
+  end
 end

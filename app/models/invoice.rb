@@ -5,9 +5,13 @@ class Invoice < ApplicationRecord
   has_many :items, through: :invoice_items
   has_many :transactions
 
-  scope :created_between, -> (date1, date2)  { where(created_at: date1.to_date.beginning_of_day..date2.to_date.end_of_day) }
+  scope :created_between, -> (date1, date2)  {
+    where(created_at: date1.to_date.beginning_of_day..date2.to_date.end_of_day) 
+  }
 
-  scope :successful, -> { joins(:transactions).where("invoices.status = 'shipped' AND transactions.result = 'success'") }
+  scope :successful, -> {
+    joins(:transactions).where("invoices.status = 'shipped' AND transactions.result = 'success'") 
+  }
 end
 
 #  create_table "invoices", force: :cascade do |t|
