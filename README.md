@@ -5,8 +5,8 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Setup and Installation](#setup-and-installation)
-* [API Endpoints](#endpoints)
 * [Schema](#schema)
+* [API Endpoints](#endpoints)
 
 ## About
 Rails Engine is a Ruby on Rails API built to serve as the backend for [Rails Driver](https://github.com/ETBassist/rails_driver)  
@@ -30,15 +30,18 @@ From the Command Line, after cloning this repo:
 You should now be able to visit any of the endpoints below by prefacing them with localhost:3000 to see the raw JSON response, or by using a client like Postman.\
 You may also clone [Rails Driver](https://github.com/ETBassist/rails_driver) into the same parent directory and see the front end in action.
 
+## Schema
+![rails_engine_schema](https://user-images.githubusercontent.com/45305677/101933479-1bf0e180-3b91-11eb-921c-bcb23d8b14c6.png)
+
 ## Endpoints
 
 ### ReST Endpoints
 
-For examples responses and more details on each of these endpoints see [ENDOINTS.md](ENDPOINTS.md)
+For example responses and more details on each of these endpoints see [ENDPOINTS.md](ENDPOINTS.md)
 
 Available resources: `merchants` or `items`
 #### Index of Resource
->
+
 >`GET /api/v1/<resource>`
 >
 >Returns a JSON response of all records of the requested resource
@@ -113,5 +116,3 @@ Available resources: `merchants` or `items`
 >
 >Returns the sum of all revenue a particular merchant with an id matching the one given has made.
 
-## Schema
-![rails_engine_schema](https://user-images.githubusercontent.com/45305677/101933479-1bf0e180-3b91-11eb-921c-bcb23d8b14c6.png)
