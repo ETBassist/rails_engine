@@ -1,4 +1,23 @@
+# Endpoints
+
+* [ReST Endpoints](#rest-endpoints)
+  * [Index of a Resouce](#see-index-of-specified-resource)
+  * [See Single Record](#show-single-record)
+  * [Create Record](#create-a-record)
+  * [Update Record](#update-a-record)
+  * [Delete Record](#delete-record)
+* [Relationship Endpoints](#relationship-endpoints)
+* [Finder Endpoints](#find-endpoints)
+  * [Find a Single Resource](#find-single-resource)
+  * [Find Multiple of a Resource](#find-multiple-of-a-resource)
+* [Business Intelligence Endpoints](#business-intelligence-endpoints)
+  * [Merchants with Most Revenue](#merchants-with-most-revenue)
+  * [Merchants with Most Items Sold](#merchants-with-most-items-sold)
+  * [Revenue in Date Range](#revenue-across-date-range)
+  * [Revenue for a Merchant](#revenue-for-a-merchant)
+
 ## ReST Endpoints
+
 
 #### See Index of Specified Resource
 
